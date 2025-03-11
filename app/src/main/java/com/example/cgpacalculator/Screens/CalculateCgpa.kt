@@ -215,9 +215,9 @@ fun ShareCGPA(context: Context, cgpaResult: Double, listData: MutableList<Semest
     if(cgpaResult > 0){ finalResultString.append("CGPA: ${String.format(Locale.US, "%.2f", cgpaResult)}") } else{finalResultString.append("CGPA not calculated yet")}
 
 //    share with User
-    val sendIntent =android.content.Intent().apply {
-        action = android.content.Intent.ACTION_SEND
-        putExtra(android.content.Intent.EXTRA_TEXT, finalResultString.toString())
+    val sendIntent =Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_TEXT, finalResultString.toString())
         type = "text/plain"
     }
     try {
