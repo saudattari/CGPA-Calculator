@@ -60,15 +60,15 @@ fun MainScreen(navController: NavController) {
     val list = listOf(
         CList(
             R.drawable.book,
-            "Calculate CGPA",
-            "Calculate CGPA by choosing Graduation Year",
+            title = "Calculate CGPA",
+            description = "Calculate CGPA for GCUF Affiliated Colleges",
             bgColor = Color(0xFFC7FFE5),
             icColor = Color(0xFF80DBB4)
         ),
         CList(
             R.drawable.view,
-            "View Saved",
-            "lorem ipsum and lorem ipsum and ipsum and lorem ipsum and",
+            title = "Calculate CGPA",
+            description = "Calculate CGPA for all Universities",
             bgColor = Color(0xFFEBFFCB),
             icColor = Color(0xFFA1BC66)
         ),
@@ -93,11 +93,11 @@ fun MainScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(30.dp))
                 LazyColumn {
                     items(list) { item ->
-                        CheckGpaList(item) { title ->
-                            if (title == "Calculate CGPA") {
+                        CheckGpaList(item) { description ->
+                            if (description == "Calculate CGPA for GCUF Affiliated Colleges") {
                                 showBottomSheet = true
                             } else {
-                                android.widget.Toast.makeText(context, "Available Soon", android.widget.Toast.LENGTH_SHORT).show()
+                                navController.navigate("CalculateCgpa")
                             }
                         }
                     }
@@ -173,7 +173,7 @@ fun CheckGpaList(list:CList, onClick:(String)-> Unit) {
             .height(80.dp)
             .background(color = Color.White, shape = RoundedCornerShape(12.dp))
             .border(1.dp, color = Color(0xFFD5D5D5), shape = RoundedCornerShape(12.dp))
-            .clickable(onClick = { onClick(list.title) }),
+            .clickable(onClick = { onClick(list.description) }),
         colors = CardDefaults.cardColors(Color.White)
     ) {
         Row(

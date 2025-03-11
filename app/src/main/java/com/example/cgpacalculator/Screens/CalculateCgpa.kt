@@ -1,6 +1,7 @@
 package com.example.cgpacalculator.Screens
 
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -180,9 +181,7 @@ fun CalculateCgpa(batch: String, navController: NavHostController) {
                                 listData,
                                 creditHourList = creditHours[index],
 //                                index = counts
-                            ){
-                                Toast.makeText(context, "Enter at least 2 semester's GPA", Toast.LENGTH_SHORT).show()
-                            }
+                            )
                         },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -221,14 +220,14 @@ fun ShareCGPA(context: Context, cgpaResult: Double, listData: MutableList<Semest
         type = "text/plain"
     }
     try {
-        context.startActivity(android.content.Intent.createChooser(sendIntent,"Share CGPA"))
+        context.startActivity(Intent.createChooser(sendIntent,"Share CGPA"))
     }
     catch(e:Exception) {
         Toast.makeText(context, "Something went wrong! Please try Again", Toast.LENGTH_SHORT).show()
     }
 }
 
-fun calculateCumulativeGpa(data: List<SemesterData>, creditHourList: List<Int>, onLessValue:(Int)-> Unit): Double {
+fun calculateCumulativeGpa(data: List<SemesterData>, creditHourList: List<Int>): Double {
     var totalPoints = 0.0
     var totalCredits = 0
         data.forEachIndexed {i,semester->
