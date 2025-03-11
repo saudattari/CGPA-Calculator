@@ -97,7 +97,7 @@ fun MainScreen(navController: NavController) {
                             if (description == "Calculate CGPA for GCUF Affiliated Colleges") {
                                 showBottomSheet = true
                             } else {
-                                navController.navigate("CalculateCgpa")
+                                navController.navigate("AllUni")
                             }
                         }
                     }
@@ -134,7 +134,7 @@ fun MainScreen(navController: NavController) {
 
 @Composable
 fun BatchSelectionBottomSheet(onBatchSelected: (String) -> Unit) {
-    val batches = listOf("2018-22","2019-23","2020-24","2021-25", "2022-26", "2023-27","2024-28")
+    val batches = listOf("2018-22","2019-23","2020-24","2021-25", "2022-26")
 
     Column(
         modifier = Modifier

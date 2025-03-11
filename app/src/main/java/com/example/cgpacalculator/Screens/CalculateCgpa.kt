@@ -32,7 +32,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -44,7 +43,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import co.yml.charts.common.extensions.isNotNull
 import com.example.cgpacalculator.DataModel.SemesterData
 import com.example.cgpacalculator.ui.theme.MainColor
 import java.util.Locale
@@ -68,8 +66,6 @@ fun CalculateCgpa(batch: String, navController: NavHostController) {
         "2020-24"->{2}
         "2021-25"->{3}
         "2022-26"->{4}
-        "2023-27"->{5}
-        "2024-28"->{6}
         else -> 0
     }
     val creditHours = listOf(
@@ -77,9 +73,7 @@ fun CalculateCgpa(batch: String, navController: NavHostController) {
         listOf(16,17,17,16,16,17,14,17),
         listOf(17,19,21,17,16,16,15,12),
         listOf(18,19,22,17,17,16,16,12),
-        listOf(18,19,21,18,17,16,15,13),
-        listOf(16,17,19,17,18,18,17,11),
-        listOf(18,19,22,17,17,16,16,12),
+        listOf(18,19,21,18,17,16,15,13)
     )
     val listData = remember {
         MutableList(8){i->
@@ -133,15 +127,38 @@ fun CalculateCgpa(batch: String, navController: NavHostController) {
                         else -> ""
                     }
                     ChooseSemester(semester, gpaValue) { gpa, semesterNo ->
-                        when(semesterNo.semester){
-                            "1"->{sem1Gpa = gpa}
-                            "2"->{sem2Gpa = gpa}
-                            "3"->{sem3Gpa = gpa}
-                            "4"->{sem4Gpa = gpa}
-                            "5"->{sem5Gpa = gpa}
-                            "6"->{sem6Gpa = gpa}
-                            "7"->{sem7Gpa = gpa}
-                            "8"->{sem8Gpa = gpa}
+                        when (semesterNo.semester) {
+                            "1" -> {
+                                sem1Gpa = gpa
+                            }
+
+                            "2" -> {
+                                sem2Gpa = gpa
+                            }
+
+                            "3" -> {
+                                sem3Gpa = gpa
+                            }
+
+                            "4" -> {
+                                sem4Gpa = gpa
+                            }
+
+                            "5" -> {
+                                sem5Gpa = gpa
+                            }
+
+                            "6" -> {
+                                sem6Gpa = gpa
+                            }
+
+                            "7" -> {
+                                sem7Gpa = gpa
+                            }
+
+                            "8" -> {
+                                sem8Gpa = gpa
+                            }
                         }
                         semester.gpa = gpa.toDoubleOrNull() ?: 0.0
                     }
@@ -241,7 +258,11 @@ fun calculateCumulativeGpa(data: List<SemesterData>, creditHourList: List<Int>):
 }
 
 @Composable
-fun ChooseSemester(semester: SemesterData,gpaValue: String, onGpaChanged: (String, sm:SemesterData) -> Unit) {
+fun ChooseSemester(
+    semester: SemesterData,
+    gpaValue: String,
+    onGpaChanged: (String, sm: SemesterData) -> Unit
+) {
 
     Row(
         modifier = Modifier

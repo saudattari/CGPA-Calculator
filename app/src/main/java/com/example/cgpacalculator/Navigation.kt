@@ -7,6 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.cgpacalculator.Screens.AllUniCGPA
 import com.example.cgpacalculator.Screens.CalculateCgpa
 import com.example.cgpacalculator.Screens.MainScreen
 import com.example.cgpacalculator.Screens.SplashScreen
@@ -24,6 +25,9 @@ fun Navigation(navHostController: NavHostController) {
         }
         composable("Main") {
             MainScreen(navController = navHostController)
+        }
+        composable("AllUni") {
+            AllUniCGPA(navHostController)
         }
     }
 }
